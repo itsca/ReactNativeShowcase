@@ -3,6 +3,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 export type RootStackParamList = {
   Main: undefined;
   Placeholder: undefined;
+  CV: undefined;
+  GalaxyScreen: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

@@ -4,76 +4,71 @@ import {
   ScrollView,
   StatusBar,
   View,
-  Image
+  PixelRatio,
+  Dimensions
 } from 'react-native';
-import { Avatar, Button, Headline, Subheading, Text, Title } from 'react-native-paper';
+import { Avatar, Button, Headline, Text } from 'react-native-paper';
 import { RootStackParamList, RootStackScreenProps } from '../../navigation/navigationTypes';
+import Boxes from '../../components/Canvas3d';
+import { Demo } from '../../components/DemoSkia';
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = (size: number) => size / fontScale;
+const windowDimensions = Dimensions.get('window');
+const screenDimensions = Dimensions.get('screen');
 
 const Main = ({ route, navigation }: RootStackScreenProps<'Main'>) => {
   return (
     <SafeAreaView >
       <StatusBar />
+      {/* <Boxes /> */}
+      <Demo />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic">
-        <View style={{padding: 50}}>
+        <View style={{padding: 50, minHeight: windowDimensions.height}}>
           <Headline style={{
             fontSize: 133,
-            paddingTop: 100,
+            paddingTop: 40,
             lineHeight: 95,
-            marginBottom: 200,
+            marginBottom: 20,
             color: 'white',
             fontWeight: 'bold',
-            // borderBottomWidth: 9,
-            // borderBottomColor: 'white', 
-            // textShadowColor: '#5E37C3',
-            // textShadowOffset: {width: -5, height: 6},
-            // textShadowRadius: 1,
+            textShadowColor: '#5E37C3',
+            textShadowOffset: {width: -5, height: 6},
+            textShadowRadius: 1,
           }}>
             Wel co me.
           </Headline>
-          {/* <Avatar.Image 
-          size={150} source={require('../../../assets/img/Main/profile.jpg')} /> */}
-          <Image 
-          style={{
-            width: 200, 
-            height: 300,
-            position: 'absolute',
-            zIndex: -100,
-            top: 400,
-            left: 150,
-            opacity: 0.3,
-            shadowColor: '#F97746',
-            shadowOffset: {width: -5, height: 6},
-            shadowRadius: 1,
-            shadowOpacity: 1
-          }}
-          source={require('../../../assets/img/Main/profile.jpg')} />
-          <Image 
-          style={{
-            width: 200, 
-            height: 300,
-            position: 'absolute',
-            zIndex: -100,
-            top: 400,
-            left: 150,
-            opacity: 0.01,
-            tintColor: '#5E37C3'
-          }}
-          source={require('../../../assets/img/Main/profile.jpg')} />
-          <Subheading style={{color: '#076DF2',
-           paddingTop: 50,
-           fontSize: 30,
-           fontWeight: '100'
-            // borderTopWidth: 4,
-            // borderTopColor: 'white'
+          <Avatar.Image
+             size={100}
+            //  style={{
+            //   position: 'absolute',
+            //   zIndex: -100,
+            //   top: screenDimensions.height * 0.55,
+            //   right: screenDimensions.width * 0.4,
+            //   opacity: 0.6
+            // }}
+            source={require('../../../assets/img/Main/profile.jpg')} 
+          />
+          <Text
+            variant='headlineMedium'
+            style={{color: '#5E37C3',
+            paddingTop: 0,
+            fontSize: getFontSize(25),
+            fontWeight: '100',
           }}>
             Javier Escalante __
-          </Subheading>
+          </Text>
           <Text style={{color: 'white', marginBottom: 100, fontWeight: 'bold'}}>
             React Native Showcase.
           </Text>
-          <Button mode="contained" onPress={() => navigation.navigate('Placeholder')}>
-            Navigate to next screen.
+          <Button mode="contained" onPress={() => navigation.navigate('CV')}
+          style={{opacity: 0.9}}>
+            Check my CV
+          </Button>
+          <Button mode="contained" onPress={() => navigation.navigate('GalaxyScreen')}
+          style={{opacity: 0.9}}>
+            Go to Galaxy
           </Button>
         </View>
       </ScrollView>
